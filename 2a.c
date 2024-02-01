@@ -1,3 +1,6 @@
+//User Write a program to find GCD using consecutive integer checking method and
+//analyze its time efficiency in c
+
 #include <stdio.h>
 #include <time.h>
 
