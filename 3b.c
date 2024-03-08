@@ -1,35 +1,30 @@
 #include <stdio.h>
 #include <string.h>
 
-int match(char text[], char pattern[]){
-    int c, d, e, text_length, pattern_length, position=-1;
-    text_length = strlen(text);
-    pattern_length = strlen(pattern);
-    if(pattern_length>text_length)
-        return -1;
-    for(int i=0; c<=text_length-pattern_length;i++){
-        position=e=c;
-        for(d=0; d<pattern_length; d++){
-            if(pattern[d]==text[e]){
-                e++;
-            }else{
-                break;
-            }
+// Brute force string matching algorithm
+void bfsm(char *text, char *pattern) {
+    int textLength = strlen(text);
+    int patternLength = strlen(pattern);
+    
+    for (int i = 0; i <= textLength - patternLength; i++) {
+        int j;
+        for (j = 0; j < patternLength; j++) {
+            if (text[i + j] != pattern[j])
+                break; // mismatch found, break inner loop
         }
-        if(d==pattern_length){
-            return position;
-        }
-
+        if (j == patternLength) // if inner loop completed without break, pattern found
+            printf("Pattern found at index %d\n", i);
     }
-    return -1;
 }
-int main(){
+
+int main() {
     char text[] = "ababcababcabcabc";
     char pattern[] = "abc";
 
     printf("Text: %s\n", text);
     printf("Pattern: %s\n", pattern);
-    match(text, pattern);
+    printf("Occurrences:\n");
+    bfsm(text, pattern);
 
     return 0;
 }
